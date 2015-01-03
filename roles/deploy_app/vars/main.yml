@@ -19,7 +19,7 @@ port: 8003
 nginx_upstream_name: "{{ app_name }}"
 nginx_upstream_server: "127.0.0.1:{{ port }}"
 
-nginx_server_listen: 0.0.0.0:80
+nginx_server_listen: 0.0.0.0:443
 nginx_server_log: /var/log/nginx/meteor.log
 nginx_server_root: "{{ deploy_app_dir}}/app"
 nginx_server_index: index.html index.htm

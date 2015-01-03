@@ -8,6 +8,32 @@ upstream {{ nginx_upstream_name }} {
 }
 
 server {
+  listen         80;
+  server_name    {{ domain_name }};
+  return         301 https://$server_name$request_uri;
+}
+
+server {
+  listen         80;
+  server_name    nflsalumni.org;
+  return         301 https://{{ domain_name }}$request_uri;
+}
+
+server {
+  listen         0.0.0.0:443 ssl;
+  server_name    nflsalumni.org;
+  ssl on;
+  ssl_certificate /home/ubuntu/SSL.crt;
+  ssl_certificate_key /home/ubuntu/nflsalumni.org.key;
+  return       301 https://{{ domain_name }}$request_uri;
+}
+
+server {
+
+  ssl on;
+  ssl_certificate /home/ubuntu/SSL.crt;
+  ssl_certificate_key /home/ubuntu/nflsalumni.org.key;
+
   listen      {{ nginx_server_listen }};
   access_log  {{ nginx_server_log }};
   root        {{ nginx_server_root }};
