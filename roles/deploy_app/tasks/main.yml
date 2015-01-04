@@ -61,6 +61,10 @@
   #   sudo: yes
   #   shell: chdir={{ deploy_app_dir}}/build/bundle/programs/server/ mkdir node_modules || true; cd node_modules; rm -rf fibers; npm install fibers@1.0.1
 
+  - name: patch install phantomjs
+    sudo: yes
+    shell: chdir={{ deploy_app_dir}}/build/bundle/programs/server/ mkdir node_modules || true; cd node_modules; rm -rf phantomjs || true; npm install phantomjs
+
   - name: register the current pids
     sudo: yes
     shell: ps aux | grep {{ pid_expression }} | grep -v grep | awk '{print $2}'
