@@ -20,7 +20,7 @@ server {
 }
 
 server {
-  listen         0.0.0.0:443 ssl;
+  listen         0.0.0.0:443 ssl spdy;
   server_name    nflsalumni.org;
   ssl on;
   ssl_certificate /home/ubuntu/SSL.crt;
@@ -34,7 +34,7 @@ server {
   ssl_certificate /home/ubuntu/SSL.crt;
   ssl_certificate_key /home/ubuntu/nflsalumni.org.key;
 
-  listen      {{ nginx_server_listen }};
+  listen      {{ nginx_server_listen }} spdy;
   access_log  {{ nginx_server_log }};
   root        {{ nginx_server_root }};
   index       {{ nginx_server_index }};
