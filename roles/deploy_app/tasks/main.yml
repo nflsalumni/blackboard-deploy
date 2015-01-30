@@ -78,10 +78,7 @@
   - name: start app with forever
     sudo: yes
     shell:  >
-      PORT={{ port }}
-      MONGO_URL={{ mongo_url }}
-      ROOT_URL={{ root_url }}
-      forever start "{{ deploy_app_dir }}"/build/bundle/main.js
+      env `cat /etc/mailgun/credentials_env` PORT={{ port }} MONGO_URL={{ mongo_url }} ROOT_URL={{ root_url }} forever start "{{ deploy_app_dir }}"/build/bundle/main.js
     async: 10
     poll: 1
 
